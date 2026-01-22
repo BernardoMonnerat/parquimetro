@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parquimetro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+   
+</head>
+<body>
+        <header>
+            <h1>Parquimetro Online</h1>
+            <ul>
+                <li><a href="">inicio</a></li>
+                <li><a href="tarifas.html">Tabela de tarifas</a></li>
+            </ul>
+        </header>
+
+        <main>
+            <article id="ar1">
+            <h2>Pague com mais <strong>segurança/velocidade/facilidade!</strong>
+                Pague <strong>Online.</strong>
+            </h2>
+            </article>
+            <article id="ars">
+                <h3>Como Funciona?</h3>
+                <p>Um parquímetro funciona registrando o tempo que o veículo permanece estacionado.
+                   O usuário informa esse tempo (ou horário de entrada), o sistema calcula automaticamente o valor com base na tarifa vigente e, em seguida, o motorista realiza o pagamento para regularizar o estacionamento.
+                </p>
+            </article>
+            <article  id="ars">
+                
+                <form>
+                    <h3>Consulte o valor:</h3>
+                    <input type="number" id="tempo" name="tempoUsuario" placeholder="insira o tempo aqui!" min="1">
+                    <button type="button" onclick="calcular()">Calcular</button>
+
+                    <p id="respostas"></p>
+                    <p id="erros"></p>
+                </form>
+            </article>
+        </main>
+
+        <footer>
+            <p>&copy; ParquimetroOnline - TODOS OS DIREITOS RESERVADOS</p>
+        </footer>
+</body>
+</html>
