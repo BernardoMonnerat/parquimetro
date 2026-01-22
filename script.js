@@ -1,39 +1,48 @@
-class UsuarioDados {
-
-    constructor(tempo) {
-        this.tempo = tempo;
-        this.valor = 0;
+class Parquimetro {
+    constructor(valor) {
+        this.valor = valor;
     }
 
-    calculoValor() {
-        if (this.tempo > 0 && this.tempo < 30) {
-            this.valor = 1;
-        } 
-        else if (this.tempo >= 30 && this.tempo < 60) {
-            this.valor = 1.75;
-        } 
-        else if (this.tempo >= 60 && this.tempo <= 120) {
-            this.valor = 3;
-        } 
-        else {
-            document.getElementById("erros").textContent =
-                "Tempo inválido, insira um valor entre 1 e 120 minutos.";
-            return null;
+    calcularTempo() {
+        if (this.valor < 1) {
+            return { erro: "Valor insuficiente" };
         }
 
-        return this.valor;
+        if (this.valor >= 3) {
+            return {
+                tempo: 120,
+                troco: (this.valor - 3).toFixed(2)
+            };
+        }
+
+        if (this.valor >= 1.75) {
+            return {
+                tempo: 60,
+                troco: (this.valor - 1.75).toFixed(2)
+            };
+        }
+
+        return {
+            tempo: 30,
+            troco: (this.valor - 1).toFixed(2)
+        };
     }
 }
 
 function calcular() {
-    let tempo = parseInt(document.getElementById("tempo").value);
-    let usuario = new UsuarioDados(tempo);
+    const valorInput = document.getElementById("valor").value;
+    const resultadoDiv = document.getElementById("resultado");
 
-    let valorTotal = usuario.calculoValor();
+    const valor = parseFloat(valorInput);
+    const parquimetro = new Parquimetro(valor);
+    const resultado = parquimetro.calcularTempo();
 
-    if (valorTotal !== null) {
-        document.getElementById("respostas").textContent =
-            `Você terá que pagar R$ ${valorTotal.toFixed(2)}`;
+    if (resultado.erro) {
+        resultadoDiv.innerHTML = resultado.erro;
+    } else {
+        resultadoDiv.innerHTML = `
+            Tempo: ${resultado.tempo} minutos <br>
+            Troco: R$ ${resultado.troco}
+        `;
     }
 }
-
